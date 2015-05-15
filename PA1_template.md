@@ -33,7 +33,6 @@ Initially, a histogram was made to show the frequency of days with a given numbe
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
-
 The total number of missing values is 2304: 
 
 
@@ -92,6 +91,21 @@ The mean number of steps across all 61 days is calculated for each five-minute i
 
 There is almost no activity between midnight and 05:00. Peak activity occurs between 08:30 and 09:00. Mean activity gradually tapers off between 19:00 and midnight.  
 
+The time interval with the maximum mean number of steps is at 08:35 (206 steps).
+
+
+```r
+  print(filter(interval_steps,mean==max(interval_steps$mean)))
+```
+
+```
+## Source: local data frame [1 x 2]
+## 
+##   interval     mean
+## 1      835 206.1698
+```
+
+
 ## Imputing missing values
 
 A second data set is created, which replaces missing values with the average value in that five-minute interval across all days. By merging the *interval_steps* data set (288 observations, one per five-minute interval) with the _activity_ data set (17568 observations, one per five-minute interval on 61 consecutive days), the *interval_steps* data set is repeated 61 times in the *activity_new* data set. 
@@ -114,7 +128,7 @@ A new histogram is plotted showing the frequency of total number of steps per da
   hist(unlist(hist_data[,2]),col=c("Red","Green","Blue"),xlab="Total Number of Steps",ylab="Number of Days",main="Frequency of Total Number of Steps per Day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
 
 With missing values replaced with the average value for that time interval, the number of days where fewer than 10,000 steps are taken has fallen from 25 to 18. 
 
@@ -186,7 +200,7 @@ The mean daily time profile is plotted for both weekdays and weekends.
   plot(weekday_steps,type='l',main="Weekday Steps",xlab="Time of Day",ylab="Mean Number of Steps",col="Red")
   # Set the xtick label printing back to standard
   par(xaxt="s")
-  # Label the xtick labels
+  # Label the xticks
   axis(1,at=c(0,600,1200,1800,2355),labels=c("0000","0600","1200","1800","0000"))
 
   # Don't print xtick labels
@@ -195,10 +209,10 @@ The mean daily time profile is plotted for both weekdays and weekends.
   plot(weekend_steps,type='l',main="Weekend Steps",xlab="Time of Day",ylab="Mean Number of Steps",col="Red",xlim=c(0,2400),ylim=c(0,200))
   # Set the xtick label printing back to standard
   par(xaxt="s")
-  # Label the xtick labels
+  # Label the xticks
   axis(1,at=c(0,600,1200,1800,2355),labels=c("0000","0600","1200","1800","0000")) 
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
 
 Much fewer steps are taken at the weekend than on weekdays. The greatest difference is the large peak (up to about 200 steps per five-minute period) between 08:30 and 09:30 on weekdays, presumably a run before work or school. There is a similar, but less extreme, peak at the weekend. At the end of the day, between 18:00 and 20:00, there is a longer period with a less pronounced peak - possibly a walk home. Throughout the day, there are periods of moderate activity on both weekdays and weekends. In general, weekends seem to be more sedentary, although some early-morning movement at around 04:00 suggests at least one wild night out! 

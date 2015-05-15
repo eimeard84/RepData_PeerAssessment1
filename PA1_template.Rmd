@@ -33,7 +33,6 @@ Initially, a histogram was made to show the frequency of days with a given numbe
   hist(unlist(hist_data[,2]),col=c("Red","Green","Blue"),xlab="Total Number of Steps",ylab="Number of Days",main="Frequency of Total Number of Steps per Day")
 ```
 
-
 The total number of missing values is 2304: 
 
 ```{r, echo=TRUE}
@@ -72,6 +71,13 @@ The mean number of steps across all 61 days is calculated for each five-minute i
 ```
 
 There is almost no activity between midnight and 05:00. Peak activity occurs between 08:30 and 09:00. Mean activity gradually tapers off between 19:00 and midnight.  
+
+The time interval with the maximum mean number of steps is at 08:35 (206 steps).
+
+```{r, echo=TRUE}
+  print(filter(interval_steps,mean==max(interval_steps$mean)))
+```
+
 
 ## Imputing missing values
 
