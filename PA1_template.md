@@ -91,6 +91,7 @@ The mean number of steps across all 61 days is calculated for each five-minute i
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
 There is almost no activity between midnight and 05:00. Peak activity occurs between 08:30 and 09:00. Mean activity gradually tapers off between 19:00 and midnight.  
+
 ## Imputing missing values
 
 A second data set is created, which replaces missing values with the average value in that five-minute interval across all days. By merging the *interval_steps* data set (288 observations, one per five-minute interval) with the _activity_ data set (17568 observations, one per five-minute interval on 61 consecutive days), the *interval_steps* data set is repeated 61 times in the *activity_new* data set. 
@@ -168,6 +169,8 @@ A new factor value, *fac_wd*, is added to the *activity_new* data frame. The dat
   activity_weekend <- filter(activity_new,fac_wd=="Weekend")
 ```
 
+The mean daily time profile is plotted for both weekdays and weekends. 
+
 
 ```r
   # Calculate the time profiles for weekdays and weekends
@@ -189,13 +192,13 @@ A new factor value, *fac_wd*, is added to the *activity_new* data frame. The dat
   # Don't print xtick labels
   par(xaxt="n")
   # Plot the weekend time profiles
-  plot(weekend_steps,type='l',main="Weekend Steps",xlab="Time of Day",ylab="Mean Number of Steps",col="Red")
+  plot(weekend_steps,type='l',main="Weekend Steps",xlab="Time of Day",ylab="Mean Number of Steps",col="Red",xlim=c(0,2400),ylim=c(0,200))
   # Set the xtick label printing back to standard
   par(xaxt="s")
   # Label the xtick labels
-  axis(1,at=c(0005,600,1200,1800,2350),labels=c("0000","0600","1200","1800","0000"))
+  axis(1,at=c(0,600,1200,1800,2355),labels=c("0000","0600","1200","1800","0000")) 
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
 
-Much fewer steps are taken at the weekend than on weekdays. The greatest difference is the large peak (up to about 200 steps per five-minute period) between 08:30 and 09:30 on weekdays, presumably a run before work or school. There is a similar, but less extreme, peak at the weekend. At the end of the day, between 18:00 and 20:00, there is a longer period with a less pronounced peak - possibly a walk home. Throughout the day, there are periods of activity on both weekdays and weekends. 
+Much fewer steps are taken at the weekend than on weekdays. The greatest difference is the large peak (up to about 200 steps per five-minute period) between 08:30 and 09:30 on weekdays, presumably a run before work or school. There is a similar, but less extreme, peak at the weekend. At the end of the day, between 18:00 and 20:00, there is a longer period with a less pronounced peak - possibly a walk home. Throughout the day, there are periods of moderate activity on both weekdays and weekends. In general, weekends seem to be more sedentary, although some early-morning movement at around 04:00 suggests at least one wild night out! 
