@@ -10,8 +10,8 @@ output:
 The activity data used in this exercise is downloaded and read in to the data frame _activity_. 
 
 ```{r, echo=TRUE}
-  download.file("http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip","activity.zip",method="auto") # Download the compressed file
-  unzip("activity.zip") # Unzip it
+#  download.file("http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip","activity.zip",method="auto") # Download the compressed file
+#  unzip("activity.zip") # Unzip it
   activity <- read.csv("activity.csv",header=TRUE) # Load into *activity* data frame
 ```
 

@@ -58,8 +58,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
 <p>The activity data used in this exercise is downloaded and read in to the data frame <em>activity</em>.</p>
-<pre class="r"><code>  download.file(&quot;http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;,&quot;activity.zip&quot;,method=&quot;auto&quot;) # Download the compressed file
-  unzip(&quot;activity.zip&quot;) # Unzip it
+<pre class="r"><code>#  download.file(&quot;http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;,&quot;activity.zip&quot;,method=&quot;auto&quot;) # Download the compressed file
+#  unzip(&quot;activity.zip&quot;) # Unzip it
   activity &lt;- read.csv(&quot;activity.csv&quot;,header=TRUE) # Load into *activity* data frame</code></pre>
 <p>The <em>dplyr</em> library is used in this analysis.</p>
 <pre class="r"><code>  library(dplyr, warn.conflicts=FALSE) # Load the dplyr library</code></pre>
